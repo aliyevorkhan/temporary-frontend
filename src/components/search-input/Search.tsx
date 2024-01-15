@@ -78,3 +78,5 @@ const Search = React.forwardRef<HTMLInputElement, SearchProps>(
 );
 
 export default Search;
+
+Search.displayName = "Search";

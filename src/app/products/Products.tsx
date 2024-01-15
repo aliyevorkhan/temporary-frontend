@@ -47,7 +47,7 @@ const Products = () => {
           {search && (
             <div>
               <h1 className="text-3xl font-semibold">
-                "{search}" axtarışı üçün 1000 nəticə
+                &quot; {search} &quot;; axtarışı üçün 1000 nəticə
               </h1>
             </div>
           )}
