@@ -18,7 +18,6 @@ const Pagination = ({
   onNext,
   onPrev,
 }: PaginationProps) => {
-  console.log({pageSize})
   const pages = Math.ceil(total / pageSize);
 
   const renderButtons = (pageSize: number) => {

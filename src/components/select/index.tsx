@@ -16,8 +16,8 @@ const Select = (props: SelectProps) => {
   const controlClasses = clsx(
     'border-0 shadow-select rounded-lg px-4 py-3 flex items-center',
     {
-      'h-12': size === 'md',
-      'h-14': size === 'lg',
+      'min-h-12': size === 'md',
+      'min-h-14': size === 'lg',
     },
   );
 

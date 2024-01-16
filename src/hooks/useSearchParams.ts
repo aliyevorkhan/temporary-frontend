@@ -27,11 +27,22 @@ const useSearchParams = () => {
     [searchParams]
   );
 
+  const deleteQueryString = useCallback(
+    (name: string) => {
+      const params = new URLSearchParams(searchParams);
+      params.delete(name);
+
+      router.push(pathname + "?" + params.toString());
+    },
+    [searchParams]
+  );
+
   return {
     pathname,
     searchParams,
     createQueryString,
     updateQueryString,
+    deleteQueryString,
   };
 };
 

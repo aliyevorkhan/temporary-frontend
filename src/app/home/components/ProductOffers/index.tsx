@@ -33,7 +33,7 @@ const ProductOffers = () => {
       <div className="flex items-center justify-between pb-3 relative border-b-2 before:contnet-[*] before:bg-orange-300 before:absolute before:w-[50px] before:h-[2px] z-[2] before:inline-block before:bottom-[-2px]">
         <h3 className="text-base lg:text-xl">Bu Günün Təklifləri</h3>
 
-        <Link href="campaigns" className="text-base lg:text-xl cursor-pointer hover:underline">
+        <Link href="offers" className="text-base lg:text-xl cursor-pointer hover:underline">
           Bu Günün Təklifləri
         </Link>
       </div>

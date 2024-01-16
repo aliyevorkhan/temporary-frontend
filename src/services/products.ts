@@ -31,6 +31,7 @@ type ProductsFilters = {
   search?: string;
   page_size?: number;
   page?: number;
+  stores?: string[];
 };
 
 export const getProducts = async (
@@ -45,10 +46,26 @@ export const getProducts = async (
 
         filterEntries.forEach(([key, value], index) => {
           if (value) {
-            if (index === filterEntries.length - 1) {
-              url += `${key}=${value}`;
+            if (key === "stores") {
+              const ids = value as string[];
+
+              console.log({ids});
+
+              if (ids.length > 0) {
+                ids.forEach((id, index) => {
+                  if (index === ids.length - 1) {
+                    url += `store=${id}`;
+                  } else {
+                    url += `store=${id}&`;
+                  }
+                });
+              }
             } else {
-              url += `${key}=${value}&`;
+              if (index === filterEntries.length - 1) {
+                url += `${key}=${value}`;
+              } else {
+                url += `${key}=${value}&`;
+              }
             }
           }
         });

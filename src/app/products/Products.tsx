@@ -10,20 +10,24 @@ import ProductsGrid from "./product-grid";
 import useSearchParams from "@/hooks/useSearchParams";
 
 const Products = () => {
-  const [pageSize] = useState(9);
+  const [pageSize] = useState(8);
   const { searchParams, updateQueryString } = useSearchParams();
 
   const search = searchParams.get("search");
   const page = searchParams.get("page");
+  const brands = searchParams.get("brands")?.split(",");
+
+  console.log({ brands });
 
   const { data } = useQuery({
-    queryKey: ["getProducts", page, search, pageSize],
+    queryKey: ["getProducts", page, search, pageSize, brands],
     queryFn: () => {
       if (search) {
         return getProducts({
           page: page ? Number(page) : 1,
           page_size: pageSize,
           search: search as string,
+          stores: brands?.filter((brand) => brand !== ""),
         });
       }
 
@@ -35,6 +39,7 @@ const Products = () => {
   });
 
   const products = data?.results;
+  console.log({ data });
 
   return (
     <Container>
@@ -45,15 +50,23 @@ const Products = () => {
 
         <div className="w-full">
           {search && (
-            <div>
-              <h1 className="text-3xl font-semibold">
-                &quot; {search} &quot;; axtarışı üçün 1000 nəticə
+            <div className="pb-4">
+              <h1 className="text-3xl font-thin">
+                {search} axtarışı üçün {data?.count} nəticə
               </h1>
             </div>
           )}
           {products && <ProductsGrid products={products} />}
 
-          {products && (
+          {products?.length === 0 && (
+            <div>
+              <h1 className="text-xl font-normal">
+                Axtardığınız məhsul tapılmadı
+              </h1>
+            </div>
+          )}
+
+          {products && products.length > 0 && (
             <Pagination
               pageSize={pageSize}
               selectedPage={page ? Number(page) : 1}
