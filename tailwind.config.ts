@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        "border-base": "rgb(231, 236, 240)",
         layer: "rgba(0, 0, 0, 0.5)",
         beige: "#FFF2D8",
         iridium: "#3A3A3A",
@@ -31,6 +32,28 @@ const config: Config = {
           700: "#994100",
           800: "#662800",
           900: "#331E00",
+        },
+        dark: {
+          source: {
+            opacity: {
+              black: {
+                "0.5": "rgba(0, 0, 0, 0.5)",
+                "0.64": "rgba(0, 0, 0, 0.64)",
+              },
+            },
+            error: "#F32828",
+          },
+        },
+        light: {
+          source: {
+            opacity: {
+              black: {
+                "0.5": "rgba(0, 0, 0, 0.5)",
+                "0.64": "rgba(0, 0, 0, 0.64)",
+              },
+            },
+            error: "#F32828",
+          },
         },
       },
       fontSize: {

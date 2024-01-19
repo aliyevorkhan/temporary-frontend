@@ -1,21 +1,38 @@
-import Link from "next/link";
+import { useAuth } from "@/providers/AuthProvider";
 import Icon from "../icons";
+import Link from "next/link";
 
-const AuthMenu = () => {
+type AuthMenuProps = {
+  onClick?: () => void;
+};
+
+const AuthMenu = (props: AuthMenuProps) => {
+  const { user } = useAuth();
+
   return (
-    <Link href="/">
-      <div className="flex items-center">
-        <div className="h-11 w-11 bg-white flex justify-center items-center rounded-full">
-          <Icon name="user" className="fill-brand" />
-        </div>
+    <div className="">
+      {user ? (
+        <Link href="/profile">
+          <div>
+            <span className="text-sm font-medium text-white focus:outline-none ms-2">
+              Hesabım
+            </span>
+          </div>
+        </Link>
+      ) : (
+        <button className="flex items-center" onClick={() => props.onClick?.()}>
+          <div className="h-11 w-11 bg-white flex justify-center items-center rounded-full">
+            <Icon name="user" className="fill-brand" />
+          </div>
 
-        <div className="hidden lg:block">
-          <span className="text-sm font-medium text-white focus:outline-none ms-2">
-            Daxil ol
-          </span>
-        </div>
-      </div>
-    </Link>
+          <div className="hidden lg:block">
+            <span className="text-sm font-medium text-white focus:outline-none ms-2">
+              Daxil ol
+            </span>
+          </div>
+        </button>
+      )}
+    </div>
   );
 };
 

@@ -1,3 +1,5 @@
+"use client";
+
 import Container from "@/components/container";
 import ProductCampaigns from "./components/ProductCampaigns";
 import ProductOffers from "./components/ProductOffers";

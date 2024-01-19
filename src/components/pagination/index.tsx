@@ -1,4 +1,4 @@
-import Button from "../button";
+import Button from "../form/button";
 import Icon from "../icons";
 
 type PaginationProps = {

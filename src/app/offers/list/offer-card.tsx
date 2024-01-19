@@ -1,4 +1,4 @@
-import Button from "@/components/button";
+import Button from "@/components/form/button";
 import InstallmentBadge from "@/components/installment";
 import PriceDifference from "@/components/pricedifference";
 import { Offer } from "@/services/offers";

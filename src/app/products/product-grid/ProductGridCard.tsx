@@ -1,4 +1,4 @@
-import Button from "@/components/button";
+import Button from "@/components/form/button";
 import PriceDifference from "@/components/pricedifference";
 import { Product } from "@/services/products";
 import Countdown, { CountdownRenderProps, zeroPad } from "react-countdown";

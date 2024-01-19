@@ -39,7 +39,6 @@ const Products = () => {
   });
 
   const products = data?.results;
-  console.log({ data });
 
   return (
     <Container>

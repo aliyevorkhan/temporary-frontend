@@ -4,15 +4,26 @@ import ChevronIcon from "./chevron";
 import UserIcon from "./user";
 import CloseIcon from "./close";
 import SearchIcon from "./search";
+import EyeIcon from "./eye";
+import EyeOff from "./eye-off";
+import EyeOffIcon from "./eye-off";
+import AccountIcon from "./account";
+import SettingsIcon from "./settings";
+import LockIcon from "./lock";
 
 export type IconNames =
+  | "account"
+  | "eye"
+  | "eye-off"
   | "magnifier"
   | "close"
   | "chevron-left"
   | "chevron-right"
   | "chevron-down"
   | "chevron-up"
+  | "lock"
   | "search"
+  | "settings"
   | "user";
 
 type Props = {
@@ -61,6 +72,21 @@ const Icon = (props: Props) => {
       break;
     case "close":
       Component = CloseIcon;
+      break;
+    case "eye":
+      Component = EyeIcon;
+      break;
+    case "eye-off":
+      Component = EyeOffIcon;
+      break;
+    case "account":
+      Component = AccountIcon;
+      break;
+    case "settings":
+      Component = SettingsIcon;
+      break;
+    case "lock":
+      Component = LockIcon;
       break;
     default:
   }
