@@ -62,7 +62,6 @@ const OfferCard = ({ offer }: Props) => {
         <span className="text-2xl font-medium ">{offer.name}</span>
       </div>
       <div className="pt-2 mt-auto">
-        x
         <PriceDifference amountOfDiscount={amount_of_discount} price={price} />
         <div className="flex justify-between items-center mt-[10px] mb-5">
           <div>
