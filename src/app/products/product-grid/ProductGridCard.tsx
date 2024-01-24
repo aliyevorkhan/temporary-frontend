@@ -31,9 +31,8 @@ const ProductCard = ({ product }: Props) => {
     name,
     image_file,
     price,
-    amount_of_discount,
     discount_rate,
-    installment,
+    discounted_price,
     redirect_url,
     store,
   } = product;
@@ -42,7 +41,7 @@ const ProductCard = ({ product }: Props) => {
   };
 
   return (
-    <div className="px-4 py-5 flex flex-col rounded overflow-hidden hover:shadow-offerCard border border-[#e3e3e3] transition-all">
+    <div className="px-4 py-5 flex flex-col rounded overflow-hidden hover:shadow-offerCard border border-[#e3e3e3] transition-all hover:shadow-default cursor-pointer">
       <div className="h-[160px] max-h-[160px] relative">
         <img
           className="object-contain w-full h-full"
@@ -60,8 +59,10 @@ const ProductCard = ({ product }: Props) => {
         <span className="text-2xl font-medium ">{name}</span>
       </div>
       <div className="pt-2 mt-auto">
-        x
-        <PriceDifference amountOfDiscount={amount_of_discount} price={price} />
+        <div className="flex flex-row items-center gap-1">
+          <span className="text-xl font-medium">{discounted_price} ₼</span>
+          <del className="text-base text-[#9597AB]">{price} ₼</del>
+        </div>
         <div className="flex justify-between items-center mt-[10px] mb-5">
           {/* <div>
             <Countdown

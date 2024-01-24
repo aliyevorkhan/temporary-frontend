@@ -33,7 +33,6 @@ axiosInstance.interceptors.response.use(
     const originalRequest = error.config;
 
     if (originalRequest.url.includes("auth/token/refresh")) {
-      console.log("canceleed");
       deleteTokens();
 
       return Promise.reject(error);
@@ -44,7 +43,6 @@ axiosInstance.interceptors.response.use(
       !originalRequest._retry &&
       !originalRequest.url.includes("auth/token/refresh")
     ) {
-      console.log("trying to refresh token");
       originalRequest._retry = true;
 
       try {

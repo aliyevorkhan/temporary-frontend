@@ -42,7 +42,7 @@ export default function RootLayout({
 }) {
   return (
     <Providers>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning={true}>
         <body className={hovesFont.className}>
           <div className="pb-10">
             <Header />

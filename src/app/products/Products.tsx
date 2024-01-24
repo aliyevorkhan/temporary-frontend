@@ -8,32 +8,29 @@ import Filters from "./filter";
 import Pagination from "@/components/pagination";
 import ProductsGrid from "./product-grid";
 import useSearchParams from "@/hooks/useSearchParams";
+import ProductsOrder from "./order";
+import useResponsive from "@/hooks/useResponsive";
+import MobileFilter from "./mobile-filter";
 
 const Products = () => {
-  const [pageSize] = useState(8);
+  const [pageSize] = useState(16);
   const { searchParams, updateQueryString } = useSearchParams();
+  const { isMobile } = useResponsive();
 
   const search = searchParams.get("search");
   const page = searchParams.get("page");
   const brands = searchParams.get("brands")?.split(",");
-
-  console.log({ brands });
+  const order = searchParams.get("order");
 
   const { data } = useQuery({
-    queryKey: ["getProducts", page, search, pageSize, brands],
+    queryKey: ["getProducts", page, search, pageSize, brands, order],
     queryFn: () => {
-      if (search) {
-        return getProducts({
-          page: page ? Number(page) : 1,
-          page_size: pageSize,
-          search: search as string,
-          stores: brands?.filter((brand) => brand !== ""),
-        });
-      }
-
       return getProducts({
         page: page ? Number(page) : 1,
         page_size: pageSize,
+        search: search as string,
+        stores: brands?.filter((brand) => brand !== ""),
+        ordering: order as string,
       });
     },
   });
@@ -42,10 +39,12 @@ const Products = () => {
 
   return (
     <Container>
-      <div className="flex py-16 lg:py-20 gap-10">
+      <div className="flex py-8 lg:py-20 gap-10 flex-col lg:flex-row">
         <div className="sticky flex-shrink-0 hidden h-full lg:block w-80 lg:w-[290px] top-16">
           <Filters />
         </div>
+
+        {isMobile && <MobileFilter />}
 
         <div className="w-full">
           {search && (
@@ -55,6 +54,7 @@ const Products = () => {
               </h1>
             </div>
           )}
+          <ProductsOrder />
           {products && <ProductsGrid products={products} />}
 
           {products?.length === 0 && (

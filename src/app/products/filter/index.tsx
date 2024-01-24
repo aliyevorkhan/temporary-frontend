@@ -17,8 +17,6 @@ const Filters = () => {
     if (storesResponse) {
       const { results: stores } = storesResponse;
 
-      console.log({ stores });
-
       const filteredStores = new Set(
         stores
           .filter((store) => store.is_active)
@@ -52,6 +50,7 @@ const Filters = () => {
   return (
     <div className="flex flex-col w-full">
       <Select
+        instanceId="products-filter"
         options={options}
         onChange={(values) => {
           handleBrandChange(values as unknown as Array<Option>);

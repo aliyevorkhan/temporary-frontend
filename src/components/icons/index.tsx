@@ -10,6 +10,7 @@ import EyeOffIcon from "./eye-off";
 import AccountIcon from "./account";
 import SettingsIcon from "./settings";
 import LockIcon from "./lock";
+import OrderIcon from "./order";
 
 export type IconNames =
   | "account"
@@ -22,6 +23,7 @@ export type IconNames =
   | "chevron-down"
   | "chevron-up"
   | "lock"
+  | "order"
   | "search"
   | "settings"
   | "user";
@@ -88,6 +90,8 @@ const Icon = (props: Props) => {
     case "lock":
       Component = LockIcon;
       break;
+    case "order":
+      Component = OrderIcon;
     default:
   }
 

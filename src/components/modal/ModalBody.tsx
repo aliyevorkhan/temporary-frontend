@@ -30,7 +30,7 @@ const ModalBody = (props: Props) => {
   return (
     <motion.div
       ref={ref}
-      className="relative bg-white dark:bg-dark-surface-high-medium rounded-xl overflow-hidden w-[80%]"
+      className="relative bg-white dark:bg-dark-surface-high-medium rounded-3xl overflow-hidden w-[80%] lg:w-max"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

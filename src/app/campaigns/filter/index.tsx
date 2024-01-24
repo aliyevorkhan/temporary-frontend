@@ -41,6 +41,7 @@ const CampaignsFilter = ({ selectedStores, setSelectedStores }: Props) => {
   return (
     <div className="py-10">
       <Select
+        instanceId="campaigns-stores"
         isLoading={isLoading}
         isMulti
         classNames={{
