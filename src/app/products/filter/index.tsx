@@ -50,6 +50,7 @@ const Filters = () => {
   return (
     <div className="flex flex-col w-full">
       <Select
+        placeholder="Mağazalar"
         instanceId="products-filter"
         options={options}
         onChange={(values) => {

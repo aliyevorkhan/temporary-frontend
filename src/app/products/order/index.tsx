@@ -16,7 +16,7 @@ const ProductsOrder = () => {
 
   return (
     <Select
-      className="w-[290px]"
+      className="w-[300px]"
       isMulti={false}
       placeholder="Sıralama"
       options={[

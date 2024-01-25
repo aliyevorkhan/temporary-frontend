@@ -94,8 +94,10 @@ const Icon = (props: Props) => {
       break;
     case "order":
       Component = OrderIcon;
+      break;
     case "check":
       Component = CheckIcon;
+      break;
     default:
   }
 

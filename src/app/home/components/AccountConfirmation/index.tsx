@@ -20,7 +20,7 @@ const AccountConfirmation = () => {
 
   useEffect(() => {
     if (registerToken) {
-      mutate(registerToken);
+      mutate(registerToken.replaceAll(/\//g, ""));
     }
   }, [registerToken, mutate]);
 
@@ -43,7 +43,9 @@ const AccountConfirmation = () => {
           </span>
         </div>
 
-        <Button className="w-[340px]">Davam et</Button>
+        <Button className="w-[340px]" onClick={() => setShowModal(false)}>
+          Davam et
+        </Button>
       </div>
     </Modal>
   );

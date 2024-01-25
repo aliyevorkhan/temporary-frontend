@@ -15,7 +15,7 @@ import MobileFilter from "./mobile-filter";
 const Products = () => {
   const [pageSize] = useState(16);
   const { searchParams, updateQueryString } = useSearchParams();
-  const { isMobile } = useResponsive();
+  const { isMobile, isDesktop } = useResponsive();
 
   const search = searchParams.get("search");
   const page = searchParams.get("page");
@@ -54,10 +54,12 @@ const Products = () => {
               </h1>
             </div>
           )}
-          <div className="flex justify-between pt-[35px] pb-[40px]">
-            <div />
-            <ProductsOrder />
-          </div>
+          {isDesktop && (
+            <div className="flex justify-between pt-[35px] pb-[40px]">
+              <div />
+              <ProductsOrder />
+            </div>
+          )}
           {products && <ProductsGrid products={products} />}
 
           {products?.length === 0 && (

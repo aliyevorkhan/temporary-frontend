@@ -20,10 +20,15 @@ const renderer = ({
   }
 
   return (
-    <div className="flex items-center gap-0.5 font-semibold text-brand">
-      <span>{zeroPad(days)}</span>:<span>{zeroPad(hours)}</span>:
-      <span>{zeroPad(minutes)}</span>:<span>{zeroPad(seconds)}</span>
-    </div>
+    <>
+      <h2 className="mb-2 text-skin-base text-opacity-60 sm:text-sm lg:text-15px">
+        Bitme vaxti
+      </h2>
+      <div className="flex items-center gap-0.5 font-semibold text-brand">
+        <span>{zeroPad(days)}</span>:<span>{zeroPad(hours)}</span>:
+        <span>{zeroPad(minutes)}</span>:<span>{zeroPad(seconds)}</span>
+      </div>
+    </>
   );
 };
 
@@ -84,16 +89,11 @@ const PreviewOfferItemCard = ({ offer, className, endDate }: ProductProps) => {
               </del>
             )}
           </div>
-          <h2 className="mb-2 text-skin-base text-opacity-60 sm:text-sm lg:text-15px">
-            Bitme vaxti
-          </h2>
-          <div>
-            <Countdown
-              date={new Date(endDate)}
-              intervalDelay={1000}
-              renderer={renderer}
-            />
-          </div>
+          <Countdown
+            date={new Date(endDate)}
+            intervalDelay={1000}
+            renderer={renderer}
+          />
         </div>
       </div>
     </article>

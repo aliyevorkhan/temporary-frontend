@@ -34,7 +34,7 @@ const ProductOffers = () => {
         <h3 className="text-base lg:text-xl">Bu Günün Təklifləri</h3>
 
         <Link href="offers" className="text-base lg:text-xl cursor-pointer hover:underline">
-          Bu Günün Təklifləri
+          Bütün təkliflər
         </Link>
       </div>
 
