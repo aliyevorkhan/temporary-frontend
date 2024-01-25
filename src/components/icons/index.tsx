@@ -11,9 +11,11 @@ import AccountIcon from "./account";
 import SettingsIcon from "./settings";
 import LockIcon from "./lock";
 import OrderIcon from "./order";
+import CheckIcon from "./check";
 
 export type IconNames =
   | "account"
+  | "check"
   | "eye"
   | "eye-off"
   | "magnifier"
@@ -92,6 +94,8 @@ const Icon = (props: Props) => {
       break;
     case "order":
       Component = OrderIcon;
+    case "check":
+      Component = CheckIcon;
     default:
   }
 

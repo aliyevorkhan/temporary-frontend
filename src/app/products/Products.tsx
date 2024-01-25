@@ -48,13 +48,16 @@ const Products = () => {
 
         <div className="w-full">
           {search && (
-            <div className="pb-4">
+            <div>
               <h1 className="text-3xl font-thin">
                 {search} axtarışı üçün {data?.count} nəticə
               </h1>
             </div>
           )}
-          <ProductsOrder />
+          <div className="flex justify-between pt-[35px] pb-[40px]">
+            <div />
+            <ProductsOrder />
+          </div>
           {products && <ProductsGrid products={products} />}
 
           {products?.length === 0 && (

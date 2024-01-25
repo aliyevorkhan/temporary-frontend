@@ -1,28 +1,40 @@
+import Select from "@/components/select";
 import useSearchParams from "@/hooks/useSearchParams";
 
+type Order = "asc" | "desc";
+
 const ProductsOrder = () => {
-  const { searchParams, updateQueryString, deleteQueryString } =
-    useSearchParams();
+  const { updateQueryString, deleteQueryString } = useSearchParams();
 
-  const order = searchParams.get("order");
-
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-
-    console.log({ value });
-
-    if (value === "") {
+  const handleChange = (order: Order) => {
+    if (!order) {
       deleteQueryString("order");
     } else {
-      updateQueryString("order", value);
+      updateQueryString("order", order);
     }
   };
 
   return (
-    <select onChange={handleChange}>
-      <option value="asc">Ən yüksək qiymət</option>
-      <option value="desc">Ən aşağı qiymət</option>
-    </select>
+    <Select
+      className="w-[290px]"
+      isMulti={false}
+      placeholder="Sıralama"
+      options={[
+        {
+          value: "asc",
+          label: "Ən yüksək qiymət",
+        },
+        {
+          value: "desc",
+          label: "Ən aşağı qiymət",
+        },
+      ]}
+      onChange={(values) => {
+        const value = (values as { value: Order }).value;
+
+        handleChange(value);
+      }}
+    />
   );
 };
 
