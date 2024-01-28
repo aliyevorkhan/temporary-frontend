@@ -3,7 +3,7 @@ import useSearchParams from "@/hooks/useSearchParams";
 
 type Order = "asc" | "desc";
 
-const ProductsOrder = () => {
+const OffersOrder = () => {
   const { updateQueryString, deleteQueryString } = useSearchParams();
 
   const handleChange = (order: Order) => {
@@ -24,11 +24,11 @@ const ProductsOrder = () => {
       options={[
         {
           value: "asc",
-          label: "Ən yüksək qiymət",
+          label: "Ən son təkliflər",
         },
         {
           value: "desc",
-          label: "Ən aşağı qiymət",
+          label: "Ən köhnə təkliflər",
         },
       ]}
       onChange={(values) => {
@@ -40,4 +40,4 @@ const ProductsOrder = () => {
   );
 };
 
-export default ProductsOrder;
+export default OffersOrder;

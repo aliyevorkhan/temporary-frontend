@@ -9,6 +9,14 @@ export type Option = {
 
 type SelectProps = Props & {
   size?: "md" | "lg";
+  classes?: {
+    container?: string;
+    valueContainer?: string;
+    multiValue?: string;
+    control?: string;
+    menu?: string;
+    option?: string;
+  };
 };
 
 const Select = (props: SelectProps) => {
@@ -42,7 +50,7 @@ const Select = (props: SelectProps) => {
           ),
         }}
         classNames={{
-          container: () => "w-full",
+          container: () => clsx(props.classes?.container ?? ""),
           valueContainer: () => "flex flex-wrap gap-2",
           multiValue: () => multiValueClasses,
           control: () => controlClasses,

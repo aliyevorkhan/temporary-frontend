@@ -127,7 +127,7 @@ const SearchInput = () => {
                 href={`/products?search=${value}`}
                 className="text-sm font-semibold text-center text-skin-primary hover:underline"
               >
-                View all results
+                Bütün nəticələrə bax
               </a>
             </div>
           </div>

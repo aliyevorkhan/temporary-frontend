@@ -62,9 +62,9 @@ export const getProducts = async (
             } else if (key === "ordering") {
               if (value) {
                 if (value === "asc") {
-                  url += `&ordering=-price`;
+                  url += `ordering=-price`;
                 } else {
-                  url += `&ordering=price`;
+                  url += `ordering=price`;
                 }
               }
             } else {

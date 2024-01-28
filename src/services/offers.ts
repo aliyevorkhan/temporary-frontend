@@ -27,6 +27,7 @@ type OffersFilters = {
   storeIds?: string[];
   page?: number;
   page_size?: number;
+  ordering?: string;
 };
 
 export const getOffers = (
@@ -44,17 +45,27 @@ export const getOffers = (
             if (key === "storeIds") {
               const storeIds = value as Array<string>;
 
-              storeIds.forEach((storeId) => {
-                url += `store=${storeId}&`;
+              storeIds.forEach((storeId, index) => {
+                if (index === storeIds.length - 1) {
+                  url += `store=${storeId}&`;
+                } else {
+                  url += `store=${storeId}&`;
+                }
               });
-
-              return;
-            }
-
-            if (index === filterEntries.length - 1) {
-              url += `${key}=${value}`;
+            } else if (key === "ordering") {
+              if (value) {
+                if (value === "asc") {
+                  url += `ordering=-end_date`;
+                } else {
+                  url += `ordering=end_date`;
+                }
+              }
             } else {
-              url += `${key}=${value}&`;
+              if (index === filterEntries.length - 1) {
+                url += `${key}=${value}`;
+              } else {
+                url += `${key}=${value}&`;
+              }
             }
           }
         });
