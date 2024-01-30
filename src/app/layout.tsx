@@ -3,6 +3,7 @@ import local from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/header";
 import Providers from "./providers";
+import { ToastContainer } from "react-toastify";
 
 const hovesFont = local({
   src: [
@@ -47,6 +48,7 @@ export default function RootLayout({
           <div className="pb-10">
             <Header />
             {children}
+            <ToastContainer />
           </div>
         </body>
       </html>

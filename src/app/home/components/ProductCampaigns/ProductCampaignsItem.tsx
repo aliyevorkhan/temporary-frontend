@@ -41,7 +41,7 @@ const ProductCampaignItem = ({ campaign }: ProductCampaignItemsProps) => {
     return (
       <Link href={campaign.redirect_url}>
         <ProductCampaignItemContent
-          image_url={campaign.image_url}
+          image_url={campaign.image_file}
           name={campaign.store.name}
         />
       </Link>

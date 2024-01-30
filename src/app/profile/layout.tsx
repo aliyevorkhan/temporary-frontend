@@ -12,9 +12,6 @@ const ProfilePage = (props: Props) => {
   const { user, isLoading } = useAuth();
 
   useEffect(() => {
-    console.log("user", user);
-    console.log("isLoading", isLoading);
-
     if (!isLoading && !user) {
       redirect("/");
     }
@@ -32,7 +29,9 @@ const ProfilePage = (props: Props) => {
             <ProfileNavigations />
           </div>
 
-          <div className="px-12 py-10 border border-border-base w-full rounded-md">{props.children}</div>
+          <div className="px-12 py-10 border border-border-base w-full rounded-md">
+            {props.children}
+          </div>
         </div>
       </Container>
     );

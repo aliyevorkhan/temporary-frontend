@@ -1,32 +1,48 @@
-import Icon from "@/components/icons";
+import Icon, { IconNames } from "@/components/icons";
 import { useAuth } from "@/providers/AuthProvider";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+
+const navigations = [
+  {
+    href: "/profile",
+    icon: "account",
+    title: "Hesabım",
+  },
+  {
+    href: "/profile/settings",
+    icon: "settings",
+    title: "Tənzimləmələr",
+  },
+  {
+    href: "/profile/password-change",
+    icon: "settings",
+    title: "Şifrəni dəyiş",
+  },
+];
 
 const ProfileNavigations = () => {
-  const { logout, fetch } = useAuth();
+  const { logout } = useAuth();
+  const pathname = usePathname();
 
   return (
     <div>
       <nav className="flex flex-col pb-2 md:pb-6 border border-border-base rounded-md">
-        <Link
-          href="/profile/settings"
-          className="flex items-center cursor-pointer text-sm lg:text-lg py-3.5 px-3.6 lg:px-4 hover:bg-[#f4f6f9] hover:text-brand gap-3 text-black group"
-        >
-          <Icon
-            name="account"
-            className="group-hover:stroke-brand group-hover:fill-brand"
-          />
+        {navigations.map((navigation, index) => (
+          <Link
+            key={index}
+            href={navigation.href}
+            className={`flex items-center cursor-pointer text-sm lg:text-lg py-3.5 px-3.6 lg:px-4 hover:bg-[#f4f6f9] hover:text-brand gap-3 text-black group ${
+              pathname === navigation.href
+                ? "bg-[#f4f6f9] text-brand"
+                : "text-black"
+            }`}
+          >
+            <Icon name={navigation.icon as IconNames} />
 
-          <span>Hesabım</span>
-        </Link>
-        <Link
-          href="/profile/settings"
-          className="flex items-center cursor-pointer text-sm lg:text-lg py-3.5 px-3.6 lg:px-4 hover:bg-[#f4f6f9] hover:text-brand gap-3 text-black group"
-        >
-          <Icon name="settings" className="group-hover:stroke-brand" />
-
-          <span>Tənzimləmələr</span>
-        </Link>
+            <span>{navigation.title}</span>
+          </Link>
+        ))}
 
         <button
           className="flex items-center cursor-pointer text-sm lg:text-lg py-3.5 px-3.6 lg:px-4 hover:bg-[#f4f6f9] hover:text-brand gap-3 text-black group"

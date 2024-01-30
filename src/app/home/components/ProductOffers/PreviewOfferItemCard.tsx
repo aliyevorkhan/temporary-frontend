@@ -69,7 +69,7 @@ const PreviewOfferItemCard = ({ offer, className, endDate }: ProductProps) => {
           </div>
 
           <div className="w-full h-full absolute top-0 z-10 -mx-0.5 sm:-mx-1">
-            <span className="text-[10px]  text-skin-inverted uppercase inline-block bg-skin-primary rounded-sm px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">
+            <span className="text-[10px]  text-white uppercase inline-block bg-brand rounded-sm px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">
               {discount_rate}%
             </span>
           </div>

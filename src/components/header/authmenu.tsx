@@ -12,7 +12,10 @@ const AuthMenu = (props: AuthMenuProps) => {
   return (
     <div className="">
       {user ? (
-        <Link href="/profile">
+        <Link href="/profile" className="flex items-center">
+          <div className="h-11 w-11 bg-white flex justify-center items-center rounded-full">
+            <Icon name="user" className="fill-brand" />
+          </div>
           <div>
             <span className="text-sm font-medium text-white focus:outline-none ms-2">
               Hesabım
