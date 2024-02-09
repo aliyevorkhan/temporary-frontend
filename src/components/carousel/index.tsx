@@ -16,7 +16,7 @@ const Carousel = (props: Props) => {
   const swiperRef = useRef<SwiperRef>();
 
   return (
-    <div className="relative">
+    <div className="relative group/carousel">
       <Swiper
         modules={[Navigation]}
         onBeforeInit={(swiper) => {
@@ -32,7 +32,7 @@ const Carousel = (props: Props) => {
           onClick={() => {
             swiperRef.current?.slidePrev();
           }}
-          className="prev-arrow absolute top-1/2 -translate-y-1/2 h-10 w-10 rounded-full shadow-navigation hover:bg-brand transition-all flex items-center justify-center bg-white group"
+          className="hidden group-hover/carousel:flex prev-arrow absolute top-1/2 -translate-y-1/2 h-10 w-10 rounded-full shadow-navigation hover:bg-brand transition-all items-center justify-center bg-white group"
         >
           <Icon name="chevron-left" className="group-hover:fill-white" />
         </button>
@@ -40,7 +40,7 @@ const Carousel = (props: Props) => {
           onClick={() => {
             swiperRef.current?.slideNext();
           }}
-          className="prev-arrow absolute right-0 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full shadow-navigation hover:bg-brand transition-all flex items-center justify-center bg-white group"
+          className="prev-arrow absolute right-0 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full shadow-navigation hover:bg-brand transition-all hidden group-hover/carousel:flex items-center justify-center bg-white group"
         >
           <Icon name="chevron-right" className="group-hover:fill-white" />
         </button>

@@ -43,6 +43,8 @@ const OfferCard = ({ offer }: Props) => {
     window.open(redirect_url, "_blank");
   };
 
+  console.log({installment});
+
   return (
     <div className="px-4 py-5 flex flex-col rounded overflow-hidden hover:shadow-offerCard border border-[#e3e3e3] transition-all">
       <div className="h-[160px] max-h-[160px] relative">

@@ -1,9 +1,12 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { User } from "@/services/user";
 import Input from "@/components/form/input";
 import Button from "@/components/form/button";
+import { useMutation } from "react-query";
+import { updateUserService } from "@/services/auth";
+import { Bounce, toast } from "react-toastify";
 
 type Props = {
   user: User;
@@ -13,7 +16,8 @@ const AccountDetailsForm = ({ user }: Props) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    setError,
+    formState: { errors, isValid },
   } = useForm<{
     email: string;
     firstName: string;
@@ -21,12 +25,52 @@ const AccountDetailsForm = ({ user }: Props) => {
     phoneNumber: string;
   }>({
     defaultValues: {
+      firstName: user?.first_name,
+      lastName: user?.last_name,
       email: user?.email,
     },
   });
 
-  const onSubmit = () => {
-    //TODO: Update user
+  const { mutate } = useMutation(updateUserService, {
+    onSuccess: () => {
+      toast.success("Saved", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    },
+    onError: (data) => {
+      toast.error("Something went wrong", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    },
+  });
+
+  const onSubmit = (values: FieldValues) => {
+    if (!isValid) {
+      return false;
+    }
+
+    const userData: Partial<User> = {
+      first_name: values.firstName,
+      last_name: values.lastName,
+    };
+
+    mutate(userData);
   };
 
   return (
@@ -57,7 +101,7 @@ const AccountDetailsForm = ({ user }: Props) => {
               error={errors.lastName?.message}
             />
           </div>
-          <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
+          {/* <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
             <Input
               type="tel"
               label="Telefon/Mobil*"
@@ -68,7 +112,7 @@ const AccountDetailsForm = ({ user }: Props) => {
               className="w-full sm:w-1/2 px-1.5 md:px-2.5"
               error={errors.phoneNumber?.message}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <h2 className="my-7 font-medium text-2xl">Account Information</h2>

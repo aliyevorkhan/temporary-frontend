@@ -9,10 +9,13 @@ import { useState } from "react";
 import Modal from "../modal";
 import LoginForm from "../auth/login-form";
 import RegisterForm from "../auth/register-form";
+import ForgotPassword from "../auth/forgot-password";
 
 const Header = () => {
   const [showAuthMenu, setAuthMenu] = useState(false);
-  const [formType, setFormType] = useState<"login" | "register">("login");
+  const [formType, setFormType] = useState<
+    "login" | "register" | "forget-password"
+  >("login");
 
   return (
     <header className="bg-brand py-4">
@@ -38,19 +41,24 @@ const Header = () => {
         </div>
       </Container>
       <Modal isOpen={showAuthMenu} onClose={() => setAuthMenu(false)}>
-        <div className="w-full lg:w-[920px] xl:w-[1000px] 2xl:w-[1200px]">
-          {formType === "login" ? (
+        {formType === "login" ? (
+          <div className="w-full lg:w-[920px] xl:w-[1000px] 2xl:w-[1200px]">
             <LoginForm
               onRegisterClick={() => setFormType("register")}
               onLoginSuccess={() => setAuthMenu(false)}
+              onForgotPasswordClick={() => setFormType("forget-password")}
             />
-          ) : (
+          </div>
+        ) : formType === "forget-password" ? (
+          <ForgotPassword />
+        ) : (
+          <div className="w-full lg:w-[920px] xl:w-[1000px] 2xl:w-[1200px]">
             <RegisterForm
               onLoginClick={() => setFormType("login")}
               onRegisterSuccess={() => setAuthMenu(false)}
             />
-          )}
-        </div>
+          </div>
+        )}
       </Modal>
     </header>
   );

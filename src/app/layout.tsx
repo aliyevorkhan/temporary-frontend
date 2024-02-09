@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import Providers from "./providers";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const hovesFont = local({
   src: [

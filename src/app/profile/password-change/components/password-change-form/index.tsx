@@ -6,14 +6,14 @@ import { ChangePasswordBody, changePasswordService } from "@/services/auth";
 import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { Bounce, ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Bounce, toast } from "react-toastify";
 
 const PasswordChangeForm = () => {
   const {
     register,
     handleSubmit,
     reset,
+    setError,
     formState: { errors },
   } = useForm<ChangePasswordBody>({
     defaultValues: {
@@ -40,16 +40,8 @@ const PasswordChangeForm = () => {
     },
     onError: (data: AxiosError<{ new_password2: string[] }>) => {
       if (data.response) {
-        toast.error(data.response.data.new_password2[0], {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
+        setError("new_password2", {
+          message: data.response.data.new_password2[0],
         });
       }
     },
@@ -70,14 +62,20 @@ const PasswordChangeForm = () => {
             label="Yeni şifrə"
             error={errors.new_password1?.message}
             {...register("new_password1", {
-              required: "Yeni şifrəni daxil edin",
+              required: {
+                value: true,
+                message: "Yeni şifrəni daxil edin",
+              },
             })}
           />
           <PasswordInput
             label="Yeni şifrə təkrarı"
             error={errors.new_password2?.message}
             {...register("new_password2", {
-              required: "Yeni şifrəninin təkrarını daxil edin",
+              required: {
+                value: true,
+                message: "Yeni şifrəninin təkrarını daxil edin",
+              },
             })}
           />
           <div className="relative mt-3">

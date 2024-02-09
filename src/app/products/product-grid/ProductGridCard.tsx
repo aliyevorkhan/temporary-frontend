@@ -33,6 +33,7 @@ const ProductCard = ({ product }: Props) => {
     price,
     discount_rate,
     discounted_price,
+    amount_of_discount,
     redirect_url,
     store,
   } = product;
@@ -60,8 +61,16 @@ const ProductCard = ({ product }: Props) => {
       </div>
       <div className="pt-2 mt-auto">
         <div className="flex flex-row items-center gap-1">
-          <span className="text-xl font-medium">{discounted_price} ₼</span>
-          <del className="text-base text-[#9597AB]">{price} ₼</del>
+          {parseInt(amount_of_discount) > 0 ? (
+            <>
+              <span className="text-xl font-medium">{discounted_price} ₼</span>
+              <del className="text-base text-[#9597AB]">{price} ₼</del>
+            </>
+          ) : (
+            <span>
+              <span className="text-xl font-medium">{price} ₼</span>
+            </span>
+          )}
         </div>
         <div className="flex justify-between items-center mt-[10px] mb-5">
           {/* <div>

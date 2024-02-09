@@ -32,7 +32,7 @@ axiosInstance.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (originalRequest.url.includes("auth/token/refresh")) {
+    if (originalRequest?.url.includes("auth/token/refresh")) {
       deleteTokens();
 
       return Promise.reject(error);

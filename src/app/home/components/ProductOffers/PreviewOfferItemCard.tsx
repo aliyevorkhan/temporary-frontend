@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Countdown, { CountdownRenderProps, zeroPad } from "react-countdown";
 import { Offer } from "@/services/offers";
+import InstallmentBadge from "@/components/installment";
 
 type ProductProps = {
   offer: Offer;
@@ -22,7 +23,7 @@ const renderer = ({
   return (
     <>
       <h2 className="mb-2 text-skin-base text-opacity-60 sm:text-sm lg:text-15px">
-        Bitme vaxti
+        Bitmə vaxti
       </h2>
       <div className="flex items-center gap-0.5 font-semibold text-brand">
         <span>{zeroPad(days)}</span>:<span>{zeroPad(hours)}</span>:
@@ -79,7 +80,7 @@ const PreviewOfferItemCard = ({ offer, className, endDate }: ProductProps) => {
           <h2 className="mb-4 text-base font-semibold text-skin-base">
             {name}
           </h2>
-          <div className="mb-1 space-s-2 lg:mb-4">
+          <div className="mb-1 flex gap-1 items-center lg:mb-4">
             <span className="inline-block text-sm font-semibold sm:text-15px lg:text-base text-skin-primary">
               {price} ₼
             </span>
@@ -94,6 +95,17 @@ const PreviewOfferItemCard = ({ offer, className, endDate }: ProductProps) => {
             intervalDelay={1000}
             renderer={renderer}
           />
+
+          <div className="flex justify-between mt-4 flex-col lg:flex-row lg:items-center">
+            <div>
+              <span className="font-medium">Market:</span>
+              <span className="font-normal">{store.name}</span>
+            </div>
+
+            <div className="w-max">
+              <InstallmentBadge {...installment} />
+            </div>
+          </div>
         </div>
       </div>
     </article>

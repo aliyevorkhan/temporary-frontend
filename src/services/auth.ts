@@ -68,11 +68,15 @@ export const changePasswordService = async (body: ChangePasswordBody) => {
 };
 
 export const passwordReset = async (email: string) => {
-  const response = await axiosInstance.post("/auth/password/reset/", {
-    email,
-  });
+  try {
+    const response = await axiosInstance.post("/auth/password/reset/", {
+      email,
+    });
 
-  return response.data;
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const passwordResetConfirm = async (body: ChangePasswordConfirmBody) => {
@@ -99,4 +103,14 @@ export const registerConfirm = async (token: string) => {
   );
 
   return response.data;
+};
+
+export const updateUserService = async (user: Partial<User>) => {
+  try {
+    const response = await axiosInstance.patch<User>("/auth/user/", user);
+
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
 };

@@ -4,5 +4,6 @@ export const getToken = () => {
   if (typeof window === undefined) {
     return null;
   }
-  // return Cookies.get('auth_token');
+
+  return localStorage.getItem("access_token");
 };

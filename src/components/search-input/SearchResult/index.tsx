@@ -6,8 +6,15 @@ type SearchProductProps = {
 };
 
 const SearchResult: React.FC<SearchProductProps> = ({ product }) => {
-  const { name, image_file, image_url, redirect_url, discounted_price, price } =
-    product ?? {};
+  const {
+    name,
+    image_file,
+    image_url,
+    redirect_url,
+    discounted_price,
+    price,
+    amount_of_discount,
+  } = product ?? {};
 
   return (
     <Link
@@ -24,13 +31,21 @@ const SearchResult: React.FC<SearchProductProps> = ({ product }) => {
       <div className="flex flex-col w-full overflow-hidden">
         <h3 className="truncate text-skin-base text-15px  mb-1.5">{name}</h3>
         <div className="flex gap-1 items-end">
-          <span className="inline-block text-sm font-semibold sm:text-base lg:text-sm text-skin-primary">
-            {discounted_price}
-          </span>
-          {price && (
-            <del className="text-sm text-skin-base text-opacity-70">
+          {parseInt(amount_of_discount) > 0 ? (
+            <>
+              <span className="inline-block text-sm font-semibold sm:text-base lg:text-sm text-skin-primary">
+                {discounted_price}
+              </span>
+              {price && (
+                <del className="text-sm text-skin-base text-opacity-70">
+                  {price}
+                </del>
+              )}
+            </>
+          ) : (
+            <span className="inline-block text-sm font-semibold sm:text-base lg:text-sm text-skin-primary">
               {price}
-            </del>
+            </span>
           )}
         </div>
       </div>

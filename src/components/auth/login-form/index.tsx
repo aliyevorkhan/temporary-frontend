@@ -4,6 +4,7 @@ import PasswordInput from "@/components/form/input/PasswordInput";
 import { useAuth } from "@/providers/AuthProvider";
 import { LoginBody, loginService } from "@/services/auth";
 import Image from "next/image";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 
@@ -14,6 +15,7 @@ export type LoginInputs = LoginBody & {
 type Props = {
   onRegisterClick: () => void;
   onLoginSuccess: () => void;
+  onForgotPasswordClick: () => void;
 };
 
 const LoginForm = (props: Props) => {
@@ -21,6 +23,7 @@ const LoginForm = (props: Props) => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<LoginInputs>();
 
@@ -34,8 +37,11 @@ const LoginForm = (props: Props) => {
         fetch();
         props.onLoginSuccess();
       },
-      onError: (data) => {
-        console.log(data, "login error response");
+      onError: (error) => {
+        setError("password", {
+          message: (error as IError).response.data.non_field_errors[0],
+          type: "value",
+        });
       },
     }
   );
@@ -108,7 +114,7 @@ const LoginForm = (props: Props) => {
                 <div className="flex ms-auto mt-[3px]">
                   <button
                     type="button"
-                    onClick={console.log}
+                    onClick={() => props.onForgotPasswordClick()}
                     className="text-sm text-heading underline hover:no-underline hover:text-skin-base focus:outline-none focus:text-skin-base"
                   >
                     Şifrəni unutmusunuz?

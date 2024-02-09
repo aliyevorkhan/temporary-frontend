@@ -7,7 +7,11 @@ type AuthMenuProps = {
 };
 
 const AuthMenu = (props: AuthMenuProps) => {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <div className="">
